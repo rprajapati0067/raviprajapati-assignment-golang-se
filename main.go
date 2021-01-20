@@ -14,14 +14,9 @@ func main() {
 		bst.Insert(val)
 	}
 	fmt.Println("**********Assignment 1**********")
-	fmt.Println("Printing InOrder:")
-	bst.InOrder()
-
-	fmt.Println("Printing PreOrder:")
-	bst.PreOrder()
-
-	fmt.Println("Printing PostOrder:")
-	bst.PostOrder()
+	fmt.Println("Printing InOrder:", bst.InOrder())
+	fmt.Println("Printing PreOrder:", bst.PreOrder())
+	fmt.Println("Printing PostOrder:", bst.PostOrder())
 
 	fmt.Println("**********Assignment 2**********")
 	fmt.Printf("Output: %d",
