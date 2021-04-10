@@ -38,24 +38,22 @@ func (bst *BinarySearchTree) insertElement(node *TreeNode, val int) *TreeNode {
 }
 
 // InOrder
-func (bst *BinarySearchTree) InOrder() []interface{} {
+func (bst *BinarySearchTree) InOrder() []int {
 	return bst.InOrderTraversal(bst.root)
 
 }
 
-func (bst *BinarySearchTree) InOrderTraversal(node *TreeNode) []interface{} {
+func (bst *BinarySearchTree) InOrderTraversal(node *TreeNode) []int {
 
-	var result []interface{}
-	if node != nil {
+	if node == nil {
 
-		bst.InOrderTraversal(node.leftNode)
-		fmt.Printf("%d \n", node.value)
-		bst.InOrderTraversal(node.rightNode)
+		return result
 
-		result = append(result, node.leftNode)
-		result = append(result, node.value)
-		result = append(result, node.rightNode)
 	}
+
+	bst.InOrderTraversal(node.leftNode)
+	result = append(result, node.value)
+	bst.InOrderTraversal(node.rightNode)
 	return result
 }
 
