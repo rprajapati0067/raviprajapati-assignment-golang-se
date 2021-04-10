@@ -1,9 +1,5 @@
 package assignment_1
 
-import (
-	"fmt"
-)
-
 type TreeNode struct {
 	value     int
 	leftNode  *TreeNode
@@ -13,6 +9,10 @@ type TreeNode struct {
 type BinarySearchTree struct {
 	root *TreeNode
 }
+
+var (
+	result []int
+)
 
 // Insert
 func (bst *BinarySearchTree) Insert(value int) {
@@ -58,29 +58,35 @@ func (bst *BinarySearchTree) InOrderTraversal(node *TreeNode) []int {
 }
 
 // PreOrder
-func (bst *BinarySearchTree) PreOrder() {
-	bst.PreOrderTraversal(bst.root)
+func (bst *BinarySearchTree) PreOrder() []int {
+	result = nil
+	return bst.PreOrderTraversal(bst.root)
 
 }
 
-func (bst *BinarySearchTree) PreOrderTraversal(node *TreeNode) {
-	if node != nil {
-		fmt.Printf("%d \n", node.value)
-		bst.PreOrderTraversal(node.leftNode)
-		bst.PreOrderTraversal(node.rightNode)
+func (bst *BinarySearchTree) PreOrderTraversal(node *TreeNode) []int {
+	if node == nil {
+		return result
 	}
+	result = append(result, node.value)
+	bst.InOrderTraversal(node.leftNode)
+	bst.InOrderTraversal(node.rightNode)
+	return result
 }
 
 // PostOrder
-func (bst *BinarySearchTree) PostOrder() {
-	bst.PostOrderTraversal(bst.root)
+func (bst *BinarySearchTree) PostOrder() []int {
+	result = nil
+	return bst.PostOrderTraversal(bst.root)
 
 }
 
-func (bst *BinarySearchTree) PostOrderTraversal(node *TreeNode) {
-	if node != nil {
-		bst.PostOrderTraversal(node.leftNode)
-		bst.PostOrderTraversal(node.rightNode)
-		fmt.Printf("%d \n", node.value)
+func (bst *BinarySearchTree) PostOrderTraversal(node *TreeNode) []int {
+	if node == nil {
+		return result
 	}
+	bst.InOrderTraversal(node.leftNode)
+	bst.InOrderTraversal(node.rightNode)
+	result = append(result, node.value)
+	return result
 }
